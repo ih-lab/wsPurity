@@ -1,1 +1,32 @@
 # purity-project
+
+To run the code:
+
+python Train_Model.py --seedint 1234 --path '' --fold_ACC 'ACC_Cases_Tiles_Pass_Grouped' --fold_ACC_Norm 'ACC_Norm_Cases_Tiles_Pass_Grouped' --fold_BRCA 'BRCA_Cases_Tiles_Pass_Grouped' --fold_BRCA_Norm 'BRCA_Norm_Cases_Tiles_Pass_Grouped' --fold_HNSC 'HNSC_Cases_Tiles_Pass_Grouped' --fold_HNSC_Norm 'HNSC_Norm_Cases_Tiles_Pass_Grouped' --fold_LUAD_LUSC 'LUAD_LUSC_Cases_Tiles_Pass_Grouped' --fold_LUAD_LUSC_Norm 'LUAD_LUSC_Norm_Cases_Tiles_Pass_Grouped' --fold_PRAD 'PRAD_Cases_Tiles_Pass_Grouped' --fold_PRAD_Norm 'PRAD_Norm_Cases_Tiles_Pass_Grouped' --fold_OV 'OV_Cases_Tiles_Pass_Grouped' --fold_OV_Norm 'OV_Norm_Cases_Tiles_Pass_Grouped' --fold_BLCA 'SKCM_BLCA_Cases_Tiles_Pass_Grouped' --fold_BLCA_Norm 'BLCA_Norm_Cases_Tiles_Pass_Grouped' --imsize 512 --Drop 'false' --batch_size 2 --Epochs 20 --scheduler 'true' --checkpoint 'false' --checkfile '' --numwork 0 --savepath '' --csvfile ''
+
+--seedint = 'Seed Set'
+--path = 'Path to Dataset'
+--fold_ACC = 'Folder of Dataset ACC'
+--fold_ACC_Norm = 'Folder of Dataset ACC Norm'
+--fold_BRCA = 'Folder of Dataset BRCA'
+--fold_BRCA_Norm = 'Folder of Dataset BRCA Norm'
+--fold_HNSC' = 'Folder of Dataset HNSC'
+--fold_HNSC_Norm' = 'Folder of Dataset HNSC Norm'
+--fold_LUAD_LUSC' = 'Folder of Dataset LUAD & LUSC'
+--fold_LUAD_LUSC_Norm = 'Folder of Dataset LUAD & LUSC Norm'
+--fold_PRAD' = 'Folder of Dataset PRAD'
+--fold_PRAD_Norm = 'Folder of Dataset PRAD Norm'
+--fold_OV' = 'Folder of Dataset OV'
+--fold_OV_Norm = 'Folder of Dataset OV Norm'
+--fold_BLCA = 'Folder of Dataset BLCA'
+--fold_BLCA_Norm' = 'Folder of Dataset BLCA Norm'
+--imsize' = 'Size fo Input Images'
+--Drop = 'Use Dropout'
+--batch_size = 'Batch Size'
+--Epochs = 'Number of Epochs'
+--scheduler = 'Use Scheduler'
+--checkpoint' = 'Use Checkpoint Model'
+--checkfile = 'Checkpoint File'
+--numwork = 'Number of Workers'
+--savepath = 'Save Path'
+--csvfile' = 'CSV with Data Split'
