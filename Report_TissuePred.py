@@ -2,12 +2,10 @@ import os
 import numpy as np
 import pandas as pd
 
-#dataset = 'Test' # use for test predictions
-dataset = 'Val' # use for validation predictions
-
 cancs = {'ACC': 0, 'BRCA': 1, 'HNSC': 2, 'LUAD_LUSC': 3, 'PRAD': 4, 'OV': 5, 'BLCA': 6} # cancer type IDs
 
-data = pd.read_csv(f'Data/{dataset}TilesPred.csv', header = 0, index_col = 0) # csv with predictions per tile
+model = 'Test-1632167988.6723921' # model to be used
+data = pd.read_csv(f'{model}/model-{model}_detailedoutput.csv', header = 0, index_col = 0) # csv with predictions per tile from model
 
 preds = {} # dict to store number of votes per cancer ID per slide based on predictions
 trues = {} # dict to store true cancer IDs per slide

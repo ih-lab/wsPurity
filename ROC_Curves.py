@@ -6,7 +6,8 @@ import sklearn.metrics as metrics
 
 cancs = {'ACC': 0, 'BRCA': 1, 'HNSC': 2, 'LUAD_LUSC': 3, 'PRAD': 4, 'OV': 5, 'BLCA': 6} # cancer type IDs
 
-data = pd.read_csv(f'Data/TestTilesPred.csv', header = 0, index_col = 0) # csv with predictions per tile
+model = 'Test-1632167988.6723921' # model to be used
+data = pd.read_csv(f'{model}/model-{model}_detailedoutput.csv', header = 0, index_col = 0) # csv with predictions per tile from model
 
 for cancer in cancs: # create ROC curves per cancer type
 

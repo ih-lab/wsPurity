@@ -10,7 +10,8 @@ iter = 2000 # number of iterations for tsne
 
 cancs = {'ACC': 0, 'BRCA': 1, 'HNSC': 2, 'LUAD_LUSC': 3, 'PRAD': 4, 'OV': 5, 'BLCA': 6} # cancer type IDs
 
-data_layers = pd.read_csv('Data/TestLayers.csv', header = 0, index_col = 0) # csv with layers per subset
+model = 'Test-1632167988.6723921' # model to be used
+data_layers = pd.read_csv(f'{model}/model-{model}_layers.csv', header = 0, index_col = 0) # csv with layers per subset from model
 
 if not os.path.isdir('Results/TSNE/'):
     os.makedirs('Results/TSNE/')
@@ -32,7 +33,7 @@ for idx, row in data_layers.iterrows():
 
     temp_features.append(layer)
 
-data_preds = pd.read_csv('Data/TestSubsetPred.csv', header = 0, index_col = 0) # csv with layers per subset
+data_preds = pd.read_csv(f'{model}/model-{model}_runningoutput.csv', header = 0, index_col = 0) # csv with predictions per subset from model
 
 preds = [] # list with predicted cancer types
 trues = [] # list with true cancer types

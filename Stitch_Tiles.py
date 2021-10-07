@@ -4,26 +4,26 @@ import pandas as pd
 import numpy as np
 from tqdm import tqdm
 
-path = 'Tiled/' # tiled tissue slides path
+path = '' # tiled tissue slides path
 save_path = 'Stitched/' # resulting stitched slides path
 
 slides = {} # dict with slide folder names per cancer type
 
-slides['Tiled/ACC_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}ACC_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/ACC_Norm_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}ACC_Norm_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/BRCA_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}BRCA_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/BRCA_Norm_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}BRCA_Norm_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/HNSC_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}HNSC_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/HNSC_Norm_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}HNSC_Norm_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/LUAD_LUSC_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}LUAD_LUSC_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/LUAD_LUSC_Norm_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}LUAD_LUSC_Norm_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/PRAD_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}PRAD_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/PRAD_Norm_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}PRAD_Norm_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/OV_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}OV_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/OV_Norm_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}OV_Norm_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/BLCA_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}BLCA_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/BLCA_Norm_Cases_Tiles_Pass_Grouped/'] = os.listdir(f'{path}BLCA_Norm_Cases_Tiles_Pass_Grouped/')
-slides['Tiled/PRAD_OV_BRCA_Tiles_Pass_Grouped/'] = os.listdir(f'{path}PRAD_OV_BRCA_Tiles_Pass_Grouped/')
+slides['ACC_Cases/'] = os.listdir(f'{path}ACC_Cases/')
+slides['ACC_Norm_Cases/'] = os.listdir(f'{path}ACC_Norm_Cases/')
+slides['BRCA_Cases/'] = os.listdir(f'{path}BRCA_Cases/')
+slides['BRCA_Norm_Cases/'] = os.listdir(f'{path}BRCA_Norm_Cases/')
+slides['HNSC_Cases/'] = os.listdir(f'{path}HNSC_Cases/')
+slides['HNSC_Norm_Cases/'] = os.listdir(f'{path}HNSC_Norm_Cases/')
+slides['LUAD_LUSC_Cases/'] = os.listdir(f'{path}LUAD_LUSC_Cases/')
+slides['LUAD_LUSC_Norm_Cases/'] = os.listdir(f'{path}LUAD_LUSC_Norm_Casesd/')
+slides['PRAD_Cases/'] = os.listdir(f'{path}PRAD_Cases/')
+slides['PRAD_Norm_Case/'] = os.listdir(f'{path}PRAD_Norm_Cases/')
+slides['OV_Cases/'] = os.listdir(f'{path}OV_Cases/')
+slides['OV_Norm_Cases/'] = os.listdir(f'{path}OV_Norm_Cases/')
+slides['BLCA_Cases/'] = os.listdir(f'{path}BLCA_Cases/')
+slides['BLCA_Norm_Cases/'] = os.listdir(f'{path}BLCA_Norm_Cases/')
+slides['PRAD_OV_BRCA_Cases/'] = os.listdir(f'{path}PRAD_OV_BRCA_Cases/')
 
 bins = [0.09, 0.29, 0.39, 0.49, 0.59, 0.69, 0.79, 0.89] # list of bins for tumor purity scores
 
@@ -31,7 +31,7 @@ tile_size = 512
 subset_size = 120
 
 model = 'Test-1632167988.6723921' # model to be used for heatmap and threshold images
-pred_file = pd.read_csv(f'Models/{model}/model-{model}_detailedoutput.csv', header = 0, index_col = 0)
+pred_file = pd.read_csv(f'{model}/model-{model}_detailedoutput.csv', header = 0, index_col = 0)
 subset = {} # dict with subset numbers per tile
 
 pred = {} # dict with predicted scores per tile
