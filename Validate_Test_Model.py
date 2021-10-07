@@ -33,7 +33,7 @@ def seed_everything(seed=1234):
     torch.backends.cudnn.benchmark = False
 
 # Parse arguments from command line --------------------------------------------
-parser = argparse.ArgumentParser(description='Training Model')
+parser = argparse.ArgumentParser(description='Validating/Testing Model')
 parser.add_argument('--seedint'  , type = int, default = '', help = 'Seed Set')
 parser.add_argument('--path', type=str, default='', help='Path to Dataset')
 parser.add_argument('--mod', type=str, default='', help='Type of Pretrained Model')

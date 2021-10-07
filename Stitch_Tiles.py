@@ -1,29 +1,72 @@
 import os
 import cv2
+import argparse
 import pandas as pd
 import numpy as np
 from tqdm import tqdm
 
-path = '' # tiled tissue slides path
+# Parse arguments from command line --------------------------------------------
+parser = argparse.ArgumentParser(description='Stitch Tiles')
+
+parser.add_argument('--path', type=str, default='', help='Path to Dataset')
+parser.add_argument('--fold_ACC', type=str, default='', help='Folder of Dataset ACC')
+parser.add_argument('--fold_ACC_Norm', type=str, default='', help='Folder of Dataset ACC Norm')
+parser.add_argument('--fold_BRCA', type=str, default='', help='Folder of Dataset BRCA')
+parser.add_argument('--fold_BRCA_Norm', type=str, default='', help='Folder of Dataset BRCA Norm')
+parser.add_argument('--fold_HNSC', type=str, default='', help='Folder of Dataset HNSC')
+parser.add_argument('--fold_HNSC_Norm', type=str, default='', help='Folder of Dataset HNSC Norm')
+parser.add_argument('--fold_LUAD_LUSC', type=str, default='', help='Folder of Dataset LUAD & LUSC')
+parser.add_argument('--fold_LUAD_LUSC_Norm', type=str, default='', help='Folder of Dataset LUAD & LUSC Norm')
+parser.add_argument('--fold_PRAD', type=str, default='', help='Folder of Dataset PRAD')
+parser.add_argument('--fold_PRAD_Norm', type=str, default='', help='Folder of Dataset PRAD Norm')
+parser.add_argument('--fold_OV', type=str, default='', help='Folder of Dataset OV')
+parser.add_argument('--fold_OV_Norm', type=str, default='', help='Folder of Dataset OV Norm')
+parser.add_argument('--fold_BLCA', type=str, default='', help='Folder of Dataset BLCA')
+parser.add_argument('--fold_BLCA_Norm', type=str, default='', help='Folder of Dataset BLCA Norm')
+parser.add_argument('--fold_PRAD_OV_BRCA', type=str, default='', help='Folder of Dataset PRAD/OV/BRCA')
+
+args = parser.parse_args()
+# ------------------------------------------------------------------------------
+
+# Store path and folder names --------------------------------------------------
+path = args.path
+
+fold_ACC = args.fold_ACC + '/' # TCGA
+fold_ACC_Norm = args.fold_ACC_Norm + '/' # TCGA
+fold_BRCA = args.fold_BRCA + '/' # TCGA
+fold_BRCA_Norm = args.fold_BRCA_Norm + '/' # TCGA
+fold_HNSC = args.fold_HNSC + '/' # TCGA
+fold_HNSC_Norm = args.fold_HNSC_Norm + '/' # TCGA
+fold_LUAD_LUSC = args.fold_LUAD_LUSC + '/' # TCGA
+fold_LUAD_LUSC_Norm = args.fold_LUAD_LUSC_Norm + '/' # TCGA
+fold_PRAD = args.fold_PRAD + '/' # TCGA
+fold_PRAD_Norm = args.fold_PRAD_Norm + '/' # TCGA
+fold_OV = args.fold_OV + '/' # TCGA
+fold_OV_Norm = args.fold_OV_Norm + '/' # TCGA
+fold_BLCA = args.fold_BLCA + '/' # TCGA
+fold_BLCA_Norm = args.fold_BLCA_Norm + '/' # TCGA
+fold_PRAD_OV_BRCA = args.fold_PRAD_OV_BRCA + '/' # EIPM
+# ------------------------------------------------------------------------------
+
 save_path = 'Stitched/' # resulting stitched slides path
 
 slides = {} # dict with slide folder names per cancer type
 
-slides['ACC_Cases/'] = os.listdir(f'{path}ACC_Cases/')
-slides['ACC_Norm_Cases/'] = os.listdir(f'{path}ACC_Norm_Cases/')
-slides['BRCA_Cases/'] = os.listdir(f'{path}BRCA_Cases/')
-slides['BRCA_Norm_Cases/'] = os.listdir(f'{path}BRCA_Norm_Cases/')
-slides['HNSC_Cases/'] = os.listdir(f'{path}HNSC_Cases/')
-slides['HNSC_Norm_Cases/'] = os.listdir(f'{path}HNSC_Norm_Cases/')
-slides['LUAD_LUSC_Cases/'] = os.listdir(f'{path}LUAD_LUSC_Cases/')
-slides['LUAD_LUSC_Norm_Cases/'] = os.listdir(f'{path}LUAD_LUSC_Norm_Casesd/')
-slides['PRAD_Cases/'] = os.listdir(f'{path}PRAD_Cases/')
-slides['PRAD_Norm_Case/'] = os.listdir(f'{path}PRAD_Norm_Cases/')
-slides['OV_Cases/'] = os.listdir(f'{path}OV_Cases/')
-slides['OV_Norm_Cases/'] = os.listdir(f'{path}OV_Norm_Cases/')
-slides['BLCA_Cases/'] = os.listdir(f'{path}BLCA_Cases/')
-slides['BLCA_Norm_Cases/'] = os.listdir(f'{path}BLCA_Norm_Cases/')
-slides['PRAD_OV_BRCA_Cases/'] = os.listdir(f'{path}PRAD_OV_BRCA_Cases/')
+slides[fold_ACC] = os.listdir(f'{path}{fold_ACC}')
+slides[fold_ACC_Norm] = os.listdir(f'{path}{fold_ACC_Norm}')
+slides[fold_BRCA] = os.listdir(f'{path}{fold_BRCA}')
+slides[fold_BRCA_Norm] = os.listdir(f'{path}{fold_BRCA_Norm}')
+slides[fold_HNSC] = os.listdir(f'{path}{fold_HNSC}')
+slides[fold_HNSC_Norm] = os.listdir(f'{path}{fold_HNSC_Norm}')
+slides[fold_LUAD_LUSC] = os.listdir(f'{path}{fold_LUAD_LUSC}')
+slides[fold_LUAD_LUSC_Norm] = os.listdir(f'{path}{fold_LUAD_LUSC_Norm}')
+slides[fold_PRAD] = os.listdir(f'{path}{fold_PRAD}')
+slides[fold_PRAD_Norm] = os.listdir(f'{path}{fold_PRAD_Norm}')
+slides[fold_OV] = os.listdir(f'{path}{fold_OV}')
+slides[fold_OV_Norm] = os.listdir(f'{path}{fold_OV_Norm}')
+slides[fold_BLCA] = os.listdir(f'{path}{fold_BLCA}')
+slides[fold_BLCA_Norm] = os.listdir(f'{path}{fold_BLCA_Norm}')
+slides[fold_PRAD_OV_BRCA] = os.listdir(f'{path}{fold_PRAD_OV_BRCA}')
 
 bins = [0.09, 0.29, 0.39, 0.49, 0.59, 0.69, 0.79, 0.89] # list of bins for tumor purity scores
 
