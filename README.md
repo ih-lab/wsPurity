@@ -6,7 +6,7 @@ Weakly-Supervised Tumor Purity Prediction From Frozen H&E Stained Slides
 
 1) Frozen H&E stained slides are collected from the TCGA database: TCGA-ACC, TCGA-BRCA, TCGA-HNSC, etc., and stored into folders by tissue type (e.g. ACC_Cases/, BRCA_Cases/, etc.). Normal tissue slides are collected in the same manner and stored into folders (e.g. ACC_Norm_Cases/, BRCA_Norm_Cases/, etc.).
 
-*Note: The TCGA slides are currently unavailbale for download from the GDC data portal.*
+
 
 2) Slides are labeled based on pathologist derived consensus purity scores and split into 70% | 15% | 15% for train | validation | test sets (Data/DataSplits.csv). A metadata file consisting of slide | tissue type columns is created (Data/TissueTypes.csv).
 
