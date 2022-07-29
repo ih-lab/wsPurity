@@ -34,7 +34,7 @@ def main():
         save_path = f'{fold}{w} Cases Tiles Pass\\'
         bad_path = f'{fold}{w} Cases Tiles Fail\\'
 
-        for i in tqdm(file_names[220:]):
+        for i in tqdm(file_names):
             try: 
                 slide = openslide.OpenSlide(f'{dir_path}{i}')
                 end_tile = 512
